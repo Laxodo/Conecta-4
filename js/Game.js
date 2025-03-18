@@ -1,17 +1,12 @@
 class Game{
-
     #Scenes = [];
     #ActualScene = 0;
     #Container = null;
-    #NextButton = null;
-    #PreviousButton = null;
+    #NextButton = document.getElementById("NextButton");
+    #PreviousButton = document.getElementById("PreviousButton");
 
     constructor(Escena){
         this.#Container = document.querySelector(Escena);
-        this.#NextButton = this.#Container.querySelector(".NextButton");
-        this.#PreviousButton = this.#Container.querySelector(".PreviousButton");
-        this.#NextButton.addEventListener("click", this.#siguiente);
-        this.#PreviousButton.addEventListener("click", this.#anterior);
         for(const child of this.#Container.querySelectorAll(".scene")){
             var id = child.getAttribute("id")
             var scene = null;
@@ -34,6 +29,10 @@ class Game{
                 console.log(this.#Scenes)
             }
         }
+        
+        this.#NextButton.addEventListener("click", this.#siguiente);
+        this.#PreviousButton.addEventListener("click", this.#anterior);
+
         this.#update();
     }
 
@@ -42,16 +41,17 @@ class Game{
             element._Container.classList.remove("active");
             if(index == this.#ActualScene){
                 element._Container.classList.add("active");
+                element.start();
+            }else{
+                element.stop();
             }
         });
     }
     #anterior = () =>{
-        console.log("adios")
         this.#ActualScene > 0 ? this.#ActualScene-- : 0;
         this.#update();
     }
     #siguiente = () =>{
-        console.log("hola")
         this.#ActualScene < (this.#Scenes.length - 1) ? this.#ActualScene++ : this.#ActualScene=0;
         this.#update();
     }
