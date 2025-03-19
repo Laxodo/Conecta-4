@@ -4,6 +4,8 @@ class Game{
     #Container = null;
     #NextButton = document.getElementById("NextButton");
     #PreviousButton = document.getElementById("PreviousButton");
+    #DataPlayer1 = null;
+    #DataPlayer2 = null;
 
     constructor(Escena){
         this.#Container = document.querySelector(Escena);
@@ -15,7 +17,10 @@ class Game{
                     scene = new Intro(child);
                     break;
                 case "Config":
-                    scene = new Config(child);
+                    scene = new Config(child, (options) =>{
+                        this.#DataPlayer1 = options.player1;
+                        this.#DataPlayer2 = options.player2;
+                    });
                     break;
                 case "Game":
                     scene = new Tablero(child);
