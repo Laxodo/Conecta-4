@@ -31,7 +31,6 @@ class Game{
             }
             if(scene != null){
                 this.#Scenes.push(scene);
-                console.log(this.#Scenes)
             }
         }
         this.#update();
@@ -46,12 +45,10 @@ class Game{
         });
     }
     #anterior = () =>{
-        console.log("adios")
         this.#ActualScene > 0 ? this.#ActualScene-- : 0;
         this.#update();
     }
     #siguiente = () =>{
-        console.log("hola")
         this.#ActualScene < (this.#Scenes.length - 1) ? this.#ActualScene++ : this.#ActualScene=0;
         this.#update();
     }
