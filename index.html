@@ -4,8 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conecta 4</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/Scene.js"></script>
+    <script src="js/Intro.js"></script>
+    <script src="js/Config.js"></script>
+    <script src="js/Tablero.js"></script>
+    <script src="js/End.js"></script>
+    <script src="js/Game.js"></script>
+    <script>
+        function start(){
+            game = new Game(".dam-game");
+        }
+    </script>
 </head>
-<body>
-    
+<body onload="start()">
+    <main class="dam-game">
+        <div id="Intro" class="scene active">
+            <p>Intro</p>
+        </div>
+        <div id="Config" class="scene">
+            <p>Configuracion</p>
+        </div>
+        <div id="Game" class="scene">
+            <p>Juego</p>
+        </div>
+        <div id="End" class="scene">
+            <p>End</p>
+        </div>
+        <button class="PreviousButton">Atras</button>
+        <button class="NextButton">Siguiente</button>
+    </main>
 </body>
 </html>
