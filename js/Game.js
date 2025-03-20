@@ -41,6 +41,9 @@ class Game{
             element._Container.classList.remove("active");
             if(index == this.#ActualScene){
                 element._Container.classList.add("active");
+                element.start();
+            }else{
+                element.stop();
             }
         });
     }
