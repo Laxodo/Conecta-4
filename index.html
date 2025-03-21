@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conecta 4</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Tablero.css">
     <script src="js/Scene.js"></script>
     <script src="js/Intro.js"></script>
     <script src="js/Config.js"></script>
@@ -20,20 +21,17 @@
 <body onload="start()">
     <main class="dam-game">
         <audio id="AudioLabel" loop></audio>
-        <div id="Intro" class="scene active">
-            <p>Intro</p>
-        </div>
-        <div id="Config" class="scene">
-            <p>Configuracion</p>
-        </div>
+        <h1 id="Titulo"></h1>
+        <div id="Intro" class="scene active"></div>
+        <div id="Config" class="scene"></div>
         <div id="Game" class="scene">
-            <p>Juego</p>
+            <div id="Tablero"></div>
         </div>
-        <div id="End" class="scene">
-            <p>End</p>
+        <div id="End" class="scene"></div>
+        <div id="Buttons">
+            <button class="PreviousButton">Atras</button>
+            <button class="NextButton">Siguiente</button>
         </div>
-        <button class="PreviousButton">Atras</button>
-        <button class="NextButton">Siguiente</button>
     </main>
 </body>
 </html>

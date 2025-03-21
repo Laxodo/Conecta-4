@@ -1,4 +1,20 @@
+:root{
+    --width: 100vw;
+    --heigth: 80vh;
+}
+body{
+    margin: 0;
+}
+main{
+    display: block;
+}
+.dam-game{
+    width: var(--width);
+    height: var(--heigth);
+}
 .scene{
+    width: var(--width);
+    height: var(--heigth);
     display : none;
     visibility: hidden;
 }
