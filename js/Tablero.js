@@ -1,8 +1,9 @@
 class Tablero extends Scene{
     #Tablero = null;
+    #TableroAux = null;
     #Fila = 6;
     #Columna = 7;
-    #Turno = null;
+    #Turno = true;
     _Options = null;
     #Audio = null;
     #AudioSrc = "sources/BubbleBobbleMainTheme.mp3";
@@ -13,6 +14,7 @@ class Tablero extends Scene{
         this.#Audio = document.getElementById("AudioLabel");
         this.#Audio.src = this.#AudioSrc;
         this.#Tablero = Array.from({length: this.#Fila}, () => Array(this.#Columna).fill(null));
+        this.#TableroAux = Array.from({length: this.#Fila}, () => Array(this.#Columna).fill(null));
         this.#CreateTable();
     }
 
@@ -30,34 +32,6 @@ class Tablero extends Scene{
             }
         }
     }
-
-    #CreateNode() {
-        var nodo = document.createElement("div");
-        nodo.classList.add("celda");
-        nodo.addEventListener("click", (event) => {
-            var node = event.target;
-            if (!node.classList.contains("ficha")) {
-                var ficha = document.createElement("div");
-                ficha.classList.add("ficha");
-                if (this.#Turno) {
-                    console.log("Player 1");
-                    ficha.style.backgroundImage = "url('" + this._Options.Jugador1.url + "')";
-                    //ficha.classList.add("circle_playerOne")
-
-                } else {
-                    console.log("Player 2");
-                    ficha.style.backgroundImage = "url('" + this._Options.Jugador2.url + "')"; 
-                    //ficha.classList.add("circle_playerTwo")
-                }
-                this.#ToggleTurn();
-                node.appendChild(ficha);
-            }
-
-        })
-        return nodo;
-    }
-
-     /*
     #CreateNode() {
         var nodo = document.createElement("div");
         nodo.classList.add("celda");
@@ -67,26 +41,20 @@ class Tablero extends Scene{
                 for (var i = 0; i < this.#Fila; i++) {
                     for (var j = 0; j < this.#Columna; j++) {
                         if (this.#Tablero[i][j] == node) {
-                            do{
-                                j--;
-                            }while(this.#Tablero[i][j] == null)
-                                j++;
-                                var ficha = document.createElement("div");
-                                ficha.classList.add("ficha");
-                                if (this.#Turno) {
-                                    console.log("Player 1");
-                                    ficha.style.backgroundImage = "url('" + this._Options.Jugador1.url + "')";
-                                    //ficha.classList.add("circle_playerOne")
-
-                                } else {
-                                    console.log("Player 2");
-                                    ficha.style.backgroundImage = "url('" + this._Options.Jugador2.url + "')"; 
-                                    //ficha.classList.add("circle_playerTwo")
-                                 }
-                                this.#ToggleTurn();
-                                this.#Tablero[i][j].appendChild(ficha);
-                                i = this.#Fila;
-                                j = this.#Columna;
+                            while (i < this.#Fila - 1 && this.#Tablero[i + 1][j].childNodes.length === 0) {
+                                i++;
+                            }
+                            var ficha = document.createElement("div");
+                            ficha.classList.add("ficha");
+                            if (this.#Turno) {
+                                ficha.style.backgroundImage = "url('" + this._Options.Jugador1.url + "')";
+                            } else {
+                                ficha.style.backgroundImage = "url('" + this._Options.Jugador2.url + "')";
+                            }
+                            this.#Tablero[i][j].appendChild(ficha);
+                            this.#TableroAux[i][j] = this.#Turno;
+                            this.#ToggleTurn();
+                            break;
                         }
                     }
                 }
@@ -94,8 +62,6 @@ class Tablero extends Scene{
         })
         return nodo;
     }
-    */
-
     #Reset = () => {
         this.#Turno = false;
         for (var i = 0; i < this.#Fila; i++) {
