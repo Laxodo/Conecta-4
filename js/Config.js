@@ -23,6 +23,10 @@ class Config extends Scene{
             player1: {
                 nombre: this.#LabelName1.value,
                 src: this.#ImagenURL1.src
+            },
+            player2:{
+                nombre: this.#LabelName2.value,
+                src: this.#ImagenURL2.src
             }
         }
     }
