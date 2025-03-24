@@ -1,5 +1,5 @@
 class Config extends Scene{
-    
+    #Audio = null;
     #LabelName1 = null;
     #LabelName2 = null;
     #ImageList1 = null;
@@ -58,8 +58,16 @@ class Config extends Scene{
     start(){
 
     }
+    start(){
+        document.getElementById("Titulo").innerHTML = "Config";
+        if(this.#Audio != null){
+            this.#Audio.play();
+        }
+    }
     stop(){
-
+        if(this.#Audio != null){
+            this.#Audio.pause();
+        }
     }
     restart(){
 

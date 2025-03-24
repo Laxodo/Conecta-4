@@ -1,0 +1,32 @@
+:root{
+    --rows: 8;
+    --columns: 8;
+    --lado-cuadrado-h: calc(var(--heigth) / var(--rows));
+    --lado-cuadrado-w: calc(var(--width) / var(--columns));
+}
+#Tablero{
+    
+    width: 100%;
+    height: 100%;
+}
+
+.fila{
+    display: flex;
+    justify-content: center;
+    height: var(--lado-cuadrado-h);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.celda{
+    width: min(var(--lado-cuadrado-h), var(--lado-cuadrado-w));
+    box-sizing: border-box;
+    background: blue;
+    border:1px solid black;
+}
+
+.ficha{
+    height: 100%;
+    box-sizing: content-box;
+    border-radius: 50%;
+}

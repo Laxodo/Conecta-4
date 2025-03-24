@@ -1,6 +1,14 @@
 class Game{
     #Scenes = [];
     #ActualScene = 0;
+    _Options = {
+        Jugador1:{
+            url : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/248.png",
+        },
+        Jugador2:{
+            url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png",
+        }
+    };
     #Container = null;
     #NextButton = document.getElementById("NextButton");
     #PreviousButton = document.getElementById("PreviousButton");
@@ -23,7 +31,7 @@ class Game{
                     });
                     break;
                 case "Game":
-                    scene = new Tablero(child);
+                    scene = new Tablero(child, this._Options);
                     break;
                 case "End":
                     scene = new End(child);
