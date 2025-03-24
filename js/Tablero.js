@@ -73,6 +73,18 @@ class Tablero extends Scene{
             }
         }
     }
+    start(){
+        if(this.#Audio != null){
+            if(this.#Audio != null){
+                this.#Audio.setAttribute("src", "sources/sounds/BubbleBobbleTheme.mp3");
+                this.#Audio.play();
+            }
+        }
+    }
+    stop(){
+
+    }
+    restart(){
 
     #ToggleTurn(){
         this.#Turno = !this.#Turno;
@@ -89,6 +101,5 @@ class Tablero extends Scene{
         }
     }
     restart(){
-
     }
 }
