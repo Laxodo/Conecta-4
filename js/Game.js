@@ -1,17 +1,14 @@
 class Game{
-
     #Scenes = [];
     #ActualScene = 0;
     #Container = null;
-    #NextButton = null;
-    #PreviousButton = null;
+    #NextButton = document.getElementById("NextButton");
+    #PreviousButton = document.getElementById("PreviousButton");
+    #DataPlayer1 = null;
+    #DataPlayer2 = null;
 
     constructor(Escena){
         this.#Container = document.querySelector(Escena);
-        this.#NextButton = this.#Container.querySelector(".NextButton");
-        this.#PreviousButton = this.#Container.querySelector(".PreviousButton");
-        this.#NextButton.addEventListener("click", this.#siguiente);
-        this.#PreviousButton.addEventListener("click", this.#anterior);
         for(const child of this.#Container.querySelectorAll(".scene")){
             var id = child.getAttribute("id")
             var scene = null;
@@ -20,7 +17,10 @@ class Game{
                     scene = new Intro(child);
                     break;
                 case "Config":
-                    scene = new Config(child);
+                    scene = new Config(child, (options) =>{
+                        this.#DataPlayer1 = options.player1;
+                        this.#DataPlayer2 = options.player2;
+                    });
                     break;
                 case "Game":
                     scene = new Tablero(child);
@@ -33,6 +33,10 @@ class Game{
                 this.#Scenes.push(scene);
             }
         }
+        
+        this.#NextButton.addEventListener("click", this.#siguiente);
+        this.#PreviousButton.addEventListener("click", this.#anterior);
+
         this.#update();
     }
 
@@ -41,6 +45,9 @@ class Game{
             element._Container.classList.remove("active");
             if(index == this.#ActualScene){
                 element._Container.classList.add("active");
+                element.start();
+            }else{
+                element.stop();
             }
         });
     }
